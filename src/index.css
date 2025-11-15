@@ -58,10 +58,16 @@ html, body, #root {
   /* Prevent chart overflow on mobile */
   .recharts-wrapper {
     max-width: 100% !important;
+    width: 100% !important;
   }
   
   .recharts-surface {
     max-width: 100% !important;
+    width: 100% !important;
+  }
+  
+  .recharts-responsive-container {
+    min-height: 250px !important;
   }
 }
 
