@@ -112,78 +112,86 @@ const AnalyticsPage: React.FC = () => {
         {/* Charts Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
           {/* Nasabah Deposito Bulanan */}
-          <div className="bg-white p-4 sm:p-6 rounded-xl shadow-lg border border-slate-200">
+          <div className="bg-white p-4 sm:p-6 rounded-xl shadow-lg border border-slate-200 overflow-hidden">
             <h2 className="text-base sm:text-lg font-bold text-slate-800 mb-3 sm:mb-4">Nasabah Deposito Bulanan (Jan - Des)</h2>
-            <ResponsiveContainer width="100%" height={250}>
-              <BarChart data={monthlyDeposits}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                <XAxis dataKey="month" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="amount" fill="#3b82f6" name="Jumlah Nasabah" radius={[8, 8, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
+            <div className="w-full overflow-x-auto">
+              <ResponsiveContainer width="100%" height={250} minWidth={300}>
+                <BarChart data={monthlyDeposits}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                  <XAxis dataKey="month" tick={{ fontSize: 12 }} />
+                  <YAxis tick={{ fontSize: 12 }} />
+                  <Tooltip />
+                  <Legend wrapperStyle={{ fontSize: '12px' }} />
+                  <Bar dataKey="amount" fill="#3b82f6" name="Jumlah Nasabah" radius={[8, 8, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
           </div>
 
           {/* Konversi Sales */}
-          <div className="bg-white p-4 sm:p-6 rounded-xl shadow-lg border border-slate-200">
+          <div className="bg-white p-4 sm:p-6 rounded-xl shadow-lg border border-slate-200 overflow-hidden">
             <h2 className="text-base sm:text-lg font-bold text-slate-800 mb-3 sm:mb-4">Konversi Sales Per Bulan (%)</h2>
-            <ResponsiveContainer width="100%" height={250}>
-              <LineChart data={conversionData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                <XAxis dataKey="month" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Line type="monotone" dataKey="rate" stroke="#10b981" strokeWidth={3} name="Conversion Rate (%)" />
-              </LineChart>
-            </ResponsiveContainer>
+            <div className="w-full overflow-x-auto">
+              <ResponsiveContainer width="100%" height={250} minWidth={300}>
+                <LineChart data={conversionData}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                  <XAxis dataKey="month" tick={{ fontSize: 12 }} />
+                  <YAxis tick={{ fontSize: 12 }} />
+                  <Tooltip />
+                  <Legend wrapperStyle={{ fontSize: '12px' }} />
+                  <Line type="monotone" dataKey="rate" stroke="#10b981" strokeWidth={3} name="Conversion Rate (%)" />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
           </div>
 
           {/* Profesi Terbanyak */}
-          <div className="bg-white p-4 sm:p-6 rounded-xl shadow-lg border border-slate-200">
+          <div className="bg-white p-4 sm:p-6 rounded-xl shadow-lg border border-slate-200 overflow-hidden">
             <h2 className="text-base sm:text-lg font-bold text-slate-800 mb-3 sm:mb-4">Profesi Terbanyak Berlangganan</h2>
-            <ResponsiveContainer width="100%" height={250}>
-              <BarChart data={professionData} layout="vertical">
-                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                <XAxis type="number" />
-                <YAxis dataKey="profession" type="category" width={100} />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="count" fill="#8b5cf6" name="Jumlah Nasabah" radius={[0, 8, 8, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
+            <div className="w-full overflow-x-auto">
+              <ResponsiveContainer width="100%" height={250} minWidth={300}>
+                <BarChart data={professionData} layout="vertical">
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                  <XAxis type="number" tick={{ fontSize: 12 }} />
+                  <YAxis dataKey="profession" type="category" width={80} tick={{ fontSize: 11 }} />
+                  <Tooltip />
+                  <Legend wrapperStyle={{ fontSize: '12px' }} />
+                  <Bar dataKey="count" fill="#8b5cf6" name="Jumlah Nasabah" radius={[0, 8, 8, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
           </div>
 
           {/* Alasan Nasabah Menolak / Tidak Berminat */}
-          <div className="bg-white p-4 sm:p-6 rounded-xl shadow-lg border border-slate-200">
+          <div className="bg-white p-4 sm:p-6 rounded-xl shadow-lg border border-slate-200 overflow-hidden">
             <h2 className="text-base sm:text-lg font-bold text-slate-800 mb-3 sm:mb-4">Alasan Nasabah Menolak / Tidak Berminat</h2>
             <p className="text-xs sm:text-sm text-slate-600 mb-3 sm:mb-4">Kategori alasan saat sales menelepon</p>
-            <ResponsiveContainer width="100%" height={250}>
-              <PieChart>
-                <Pie
-                  data={rejectionReasonsData}
-                  cx="50%"
-                  cy="50%"
-                  labelLine={false}
-                  label={({ name, value }) => `${value}%`}
-                  outerRadius={100}
-                  fill="#8884d8"
-                  dataKey="value"
-                >
-                  {rejectionReasonsData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
-                  ))}
-                </Pie>
-                <Tooltip formatter={(value, name) => [`${value}%`, name]} />
-                <Legend 
-                  verticalAlign="bottom" 
-                  height={36}
-                  formatter={(value) => <span className="text-xs">{value}</span>}
-                />
-              </PieChart>
-            </ResponsiveContainer>
+            <div className="w-full overflow-x-auto">
+              <ResponsiveContainer width="100%" height={250} minWidth={300}>
+                <PieChart>
+                  <Pie
+                    data={rejectionReasonsData}
+                    cx="50%"
+                    cy="50%"
+                    labelLine={false}
+                    label={({ value }) => `${value}%`}
+                    outerRadius={80}
+                    fill="#8884d8"
+                    dataKey="value"
+                  >
+                    {rejectionReasonsData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <Tooltip />
+                  <Legend 
+                    verticalAlign="bottom" 
+                    height={36}
+                    wrapperStyle={{ fontSize: '11px' }}
+                  />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
           </div>
         </div>
       </div>

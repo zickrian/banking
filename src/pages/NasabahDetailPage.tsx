@@ -100,21 +100,21 @@ const NasabahDetailPage: React.FC = () => {
                 Informasi Umum
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
-                <div className="p-4 bg-slate-50 rounded-lg">
+                <div className="p-3 sm:p-4 bg-slate-50 rounded-lg">
                   <p className="text-xs text-slate-500 mb-1 uppercase tracking-wide">Nama Lengkap</p>
-                  <p className="font-semibold text-slate-900">{nasabah.nama}</p>
+                  <p className="font-semibold text-sm sm:text-base text-slate-900 break-words">{nasabah.nama}</p>
                 </div>
-                <div className="p-4 bg-slate-50 rounded-lg">
+                <div className="p-3 sm:p-4 bg-slate-50 rounded-lg">
                   <p className="text-xs text-slate-500 mb-1 uppercase tracking-wide">Nomor Telepon</p>
-                  <p className="font-semibold text-slate-900">{nasabah.telepon}</p>
+                  <p className="font-semibold text-sm sm:text-base text-slate-900 break-words">{nasabah.telepon}</p>
                 </div>
-                <div className="p-4 bg-slate-50 rounded-lg">
+                <div className="p-3 sm:p-4 bg-slate-50 rounded-lg">
                   <p className="text-xs text-slate-500 mb-1 uppercase tracking-wide">Umur</p>
-                  <p className="font-semibold text-slate-900">{nasabah.umur} tahun</p>
+                  <p className="font-semibold text-sm sm:text-base text-slate-900">{nasabah.umur} tahun</p>
                 </div>
-                <div className="p-4 bg-slate-50 rounded-lg">
+                <div className="p-3 sm:p-4 bg-slate-50 rounded-lg">
                   <p className="text-xs text-slate-500 mb-1 uppercase tracking-wide">Jenis Kelamin</p>
-                  <p className="font-semibold text-slate-900">{nasabah.jenisKelamin}</p>
+                  <p className="font-semibold text-sm sm:text-base text-slate-900">{nasabah.jenisKelamin}</p>
                 </div>
               </div>
             </div>
@@ -126,13 +126,13 @@ const NasabahDetailPage: React.FC = () => {
                 Pekerjaan & Industri
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
-                <div className="p-4 bg-slate-50 rounded-lg">
+                <div className="p-3 sm:p-4 bg-slate-50 rounded-lg">
                   <p className="text-xs text-slate-500 mb-1 uppercase tracking-wide">Pekerjaan</p>
-                  <p className="font-semibold text-slate-900">{nasabah.pekerjaan}</p>
+                  <p className="font-semibold text-sm sm:text-base text-slate-900 break-words">{nasabah.pekerjaan}</p>
                 </div>
-                <div className="p-4 bg-slate-50 rounded-lg">
+                <div className="p-3 sm:p-4 bg-slate-50 rounded-lg">
                   <p className="text-xs text-slate-500 mb-1 uppercase tracking-wide">Sektor Industri</p>
-                  <p className="font-semibold text-slate-900">{nasabah.sektorIndustri}</p>
+                  <p className="font-semibold text-sm sm:text-base text-slate-900 break-words">{nasabah.sektorIndustri}</p>
                 </div>
               </div>
             </div>
@@ -144,13 +144,13 @@ const NasabahDetailPage: React.FC = () => {
                 Informasi Penting
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
-                <div className="p-4 bg-slate-50 rounded-lg">
+                <div className="p-3 sm:p-4 bg-slate-50 rounded-lg">
                   <p className="text-xs text-slate-500 mb-1 uppercase tracking-wide">Status Pernikahan</p>
-                  <p className="font-semibold text-slate-900">{nasabah.statusPernikahan}</p>
+                  <p className="font-semibold text-sm sm:text-base text-slate-900">{nasabah.statusPernikahan}</p>
                 </div>
-                <div className="p-4 bg-slate-50 rounded-lg">
+                <div className="p-3 sm:p-4 bg-slate-50 rounded-lg">
                   <p className="text-xs text-slate-500 mb-1 uppercase tracking-wide">Domisili</p>
-                  <p className="font-semibold text-slate-900">{nasabah.domisili}</p>
+                  <p className="font-semibold text-sm sm:text-base text-slate-900 break-words">{nasabah.domisili}</p>
                 </div>
               </div>
             </div>
@@ -197,7 +197,7 @@ const NasabahDetailPage: React.FC = () => {
               />
               <button 
                 onClick={handleSaveCatatan}
-                className="mt-3 w-full sm:w-auto px-6 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium shadow-sm transition-colors text-sm sm:text-base"
+                className="mt-3 w-full sm:w-auto px-6 py-2.5 sm:py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium shadow-sm transition-colors text-sm sm:text-base"
               >
                 Simpan Catatan
               </button>

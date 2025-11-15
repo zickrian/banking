@@ -11,12 +11,11 @@ const SettingsPage: React.FC = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center py-6 sm:py-8">
-      <div className="w-full max-w-3xl px-4 sm:px-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+      <div className="responsive-container p-3 sm:p-6 max-w-3xl mx-auto">
         {/* Header */}
-        <div className="mb-6 sm:mb-8 pb-4 border-b border-slate-200 text-center">
-          <h1 className="text-2xl sm:text-3xl font-bold mb-2" style={{ color: '#184b86' }}>Settings</h1>
-     
+        <div className="mb-4 sm:mb-8 pb-3 sm:pb-4 border-b border-slate-200">
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 text-center sm:text-left" style={{ color: '#184b86' }}>Settings</h1>
         </div>
 
         <div className="space-y-4 sm:space-y-6">
@@ -39,7 +38,7 @@ const SettingsPage: React.FC = () => {
                   type="text"
                   value={userData.name}
                   readOnly
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg bg-slate-50 text-slate-700"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-slate-300 rounded-lg bg-slate-50 text-slate-700"
                 />
               </div>
 
@@ -52,7 +51,7 @@ const SettingsPage: React.FC = () => {
                   type="email"
                   value={userData.email}
                   readOnly
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg bg-slate-50 text-slate-700"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-slate-300 rounded-lg bg-slate-50 text-slate-700"
                 />
               </div>
 
@@ -65,7 +64,7 @@ const SettingsPage: React.FC = () => {
                   type="text"
                   value={userData.role}
                   readOnly
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg bg-slate-50 text-slate-700"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-slate-300 rounded-lg bg-slate-50 text-slate-700"
                 />
               </div>
             </div>
@@ -88,7 +87,7 @@ const SettingsPage: React.FC = () => {
                 <input
                   type="password"
                   placeholder="Masukkan password lama"
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
 
@@ -99,7 +98,7 @@ const SettingsPage: React.FC = () => {
                 <input
                   type="password"
                   placeholder="Masukkan password baru"
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
 
@@ -110,12 +109,12 @@ const SettingsPage: React.FC = () => {
                 <input
                   type="password"
                   placeholder="Konfirmasi password baru"
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
 
               <button className="flex items-center justify-center gap-2 px-6 py-2.5 sm:py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold shadow-sm transition-colors w-full sm:w-auto text-sm sm:text-base">
-                <Lock className="w-4 h-4" />
+                <Lock className="w-4 h-4 sm:w-5 sm:h-5" />
                 Update Password
               </button>
             </div>

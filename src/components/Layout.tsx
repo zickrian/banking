@@ -23,9 +23,9 @@ const Layout: React.FC = () => {
   ];
 
   return (
-    <div className="flex h-screen overflow-hidden bg-slate-50">
+    <div className="flex h-screen overflow-hidden bg-slate-50 max-w-full">
       {/* Sidebar */}
-      <aside className={`fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-xl transform transition-transform duration-300 lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      <aside className={`fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-xl transform transition-transform duration-300 lg:translate-x-0 overflow-y-auto ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         {/* Logo BCA di paling atas */}
         <div className="py-4">
           <div className="flex items-center justify-center">
@@ -101,28 +101,28 @@ const Layout: React.FC = () => {
       </aside>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col lg:ml-64">
+      <div className="flex-1 flex flex-col lg:ml-64 min-w-0 max-w-full">
         {/* Mobile Header */}
         <header className="lg:hidden bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
-          <div className="flex items-center justify-between h-16 px-4">
+          <div className="flex items-center justify-between h-16 px-3 sm:px-4">
             <button
               onClick={() => setSidebarOpen(true)}
-              className="text-slate-600 hover:text-slate-900"
+              className="text-slate-600 hover:text-slate-900 flex-shrink-0"
             >
-              <Menu className="w-6 h-6" />
+              <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
-            <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#184b86' }}>
+            <div className="flex items-center gap-2 min-w-0">
+              <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#184b86' }}>
                 <Building2 className="w-4 h-4 text-white" />
               </div>
-              <h2 className="text-base font-bold text-slate-800">Bank Portal</h2>
+              <h2 className="text-sm sm:text-base font-bold text-slate-800 truncate">Bank Portal</h2>
             </div>
-            <div className="w-6" />
+            <div className="w-5 sm:w-6 flex-shrink-0" />
           </div>
         </header>
 
         {/* Page Content */}
-        <main className="flex-1 overflow-auto bg-slate-50">
+        <main className="flex-1 overflow-auto bg-slate-50 max-w-full">
           <Outlet />
         </main>
       </div>

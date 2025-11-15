@@ -34,30 +34,31 @@ const FormKreditPage: React.FC = () => {
   };
 
   return (
-    <div className="p-4 sm:p-6">
-      {/* Header */}
-      <div className="mb-4 sm:mb-6 pb-4 border-b border-slate-200">
-        <button 
-          onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-gray-600 hover:text-gray-800 mb-3 sm:mb-4"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span className="text-sm sm:text-base">Kembali</span>
-        </button>
-        <div className="flex items-center gap-2 sm:gap-3">
-          <div className="bg-green-100 p-2 sm:p-3 rounded-lg">
-            <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" />
-          </div>
-          <div>
-            <h1 className="text-xl sm:text-2xl font-bold" style={{ color: '#184b86' }}>Form Pengajuan Kredit</h1>
-            <p className="text-xs sm:text-sm text-gray-600">Isi formulir pengajuan kredit untuk nasabah</p>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+      <div className="responsive-container p-3 sm:p-6 max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-slate-200">
+          <button 
+            onClick={() => navigate(-1)}
+            className="flex items-center gap-2 text-gray-600 hover:text-gray-800 mb-3 sm:mb-4"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span className="text-sm sm:text-base">Kembali</span>
+          </button>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="bg-green-100 p-2 sm:p-3 rounded-lg flex-shrink-0">
+              <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" />
+            </div>
+            <div className="min-w-0">
+              <h1 className="text-xl sm:text-2xl font-bold" style={{ color: '#184b86' }}>Form Pengajuan Kredit</h1>
+              <p className="text-xs sm:text-sm text-gray-600">Isi formulir pengajuan kredit untuk nasabah</p>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Form */}
-      <div className="max-w-3xl">
-        <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow border border-gray-200 p-4 sm:p-6">
+        {/* Form */}
+        <div className="max-w-3xl mx-auto">
+          <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow border border-gray-200 p-4 sm:p-6">
           <div className="space-y-5 sm:space-y-6">
             {/* Data Nasabah */}
             <div>
@@ -73,7 +74,7 @@ const FormKreditPage: React.FC = () => {
                     value={formData.namaNasabah}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
                 </div>
                 <div>
@@ -86,7 +87,7 @@ const FormKreditPage: React.FC = () => {
                     value={formData.telepon}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
                 </div>
               </div>
@@ -105,7 +106,7 @@ const FormKreditPage: React.FC = () => {
                     value={formData.jenisKredit}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
                   >
                     <option value="">Pilih Jenis Kredit</option>
                     <option value="KPR">Kredit Pemilikan Rumah (KPR)</option>
@@ -126,7 +127,7 @@ const FormKreditPage: React.FC = () => {
                     onChange={handleChange}
                     required
                     placeholder="Contoh: 100000000"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
                 </div>
                 <div>
@@ -138,7 +139,7 @@ const FormKreditPage: React.FC = () => {
                     value={formData.tenor}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
                   >
                     <option value="">Pilih Tenor</option>
                     <option value="12">12 Bulan</option>
@@ -161,7 +162,7 @@ const FormKreditPage: React.FC = () => {
                     onChange={handleChange}
                     required
                     placeholder="Contoh: 15000000"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
                 </div>
               </div>
@@ -179,7 +180,7 @@ const FormKreditPage: React.FC = () => {
                 onChange={handleChange}
                 required
                 placeholder="Contoh: Pembelian rumah, renovasi, modal usaha, dll"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
 
@@ -194,29 +195,30 @@ const FormKreditPage: React.FC = () => {
                 onChange={handleChange}
                 rows={4}
                 placeholder="Catatan atau informasi tambahan..."
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
               />
             </div>
 
             {/* Submit Button */}
-            <div className="flex flex-col sm:flex-row gap-3 pt-4">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-4">
               <button
                 type="submit"
-                className="flex items-center justify-center gap-2 px-6 py-2.5 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium text-sm sm:text-base"
+                className="flex items-center justify-center gap-2 px-6 py-2.5 sm:py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium text-sm sm:text-base transition-colors"
               >
-                <Save className="w-4 h-4" />
+                <Save className="w-4 h-4 sm:w-5 sm:h-5" />
                 Simpan Pengajuan
               </button>
               <button
                 type="button"
                 onClick={() => navigate(-1)}
-                className="px-6 py-2.5 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium text-sm sm:text-base"
+                className="px-6 py-2.5 sm:py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium text-sm sm:text-base transition-colors"
               >
                 Batal
               </button>
             </div>
           </div>
         </form>
+        </div>
       </div>
     </div>
   );
