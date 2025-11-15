@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { TrendingUp, Users, Target, Briefcase } from 'lucide-react';
 import { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { monthlyDeposits, conversionData, professionData, rejectionReasonsData, mockNasabah } from '../data/mockData';
 
 const AnalyticsPage: React.FC = () => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    // Force a re-render after component mounts to ensure ResponsiveContainer gets proper dimensions
+    setMounted(true);
+  }, []);
 
   // Hitung nasabah yang sudah deposito bulan ini (contacted)
   const currentMonth = new Date().getMonth();
@@ -114,51 +120,57 @@ const AnalyticsPage: React.FC = () => {
           {/* Nasabah Deposito Bulanan */}
           <div className="bg-white p-4 sm:p-6 rounded-xl shadow-lg border border-slate-200">
             <h2 className="text-base sm:text-lg font-bold text-slate-800 mb-3 sm:mb-4">Nasabah Deposito Bulanan (Jan - Des)</h2>
-            <div className="w-full h-64 sm:h-72">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={monthlyDeposits} margin={{ top: 5, right: 10, left: -10, bottom: 5 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                  <XAxis dataKey="month" tick={{ fontSize: 10 }} />
-                  <YAxis tick={{ fontSize: 10 }} />
-                  <Tooltip contentStyle={{ fontSize: '12px' }} />
-                  <Legend wrapperStyle={{ fontSize: '11px' }} />
-                  <Bar dataKey="amount" fill="#3b82f6" name="Jumlah Nasabah" radius={[8, 8, 0, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
+            <div className="w-full overflow-hidden">
+              {mounted && (
+                <ResponsiveContainer width="100%" height={288}>
+                  <BarChart data={monthlyDeposits} margin={{ top: 5, right: 10, left: -10, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                    <XAxis dataKey="month" tick={{ fontSize: 10 }} />
+                    <YAxis tick={{ fontSize: 10 }} />
+                    <Tooltip contentStyle={{ fontSize: '12px' }} />
+                    <Legend wrapperStyle={{ fontSize: '11px' }} />
+                    <Bar dataKey="amount" fill="#3b82f6" name="Jumlah Nasabah" radius={[8, 8, 0, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
+              )}
             </div>
           </div>
 
           {/* Konversi Sales */}
           <div className="bg-white p-4 sm:p-6 rounded-xl shadow-lg border border-slate-200">
             <h2 className="text-base sm:text-lg font-bold text-slate-800 mb-3 sm:mb-4">Konversi Sales Per Bulan (%)</h2>
-            <div className="w-full h-64 sm:h-72">
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={conversionData} margin={{ top: 5, right: 10, left: -10, bottom: 5 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                  <XAxis dataKey="month" tick={{ fontSize: 10 }} />
-                  <YAxis tick={{ fontSize: 10 }} />
-                  <Tooltip contentStyle={{ fontSize: '12px' }} />
-                  <Legend wrapperStyle={{ fontSize: '11px' }} />
-                  <Line type="monotone" dataKey="rate" stroke="#10b981" strokeWidth={2} name="Conversion Rate (%)" />
-                </LineChart>
-              </ResponsiveContainer>
+            <div className="w-full overflow-hidden">
+              {mounted && (
+                <ResponsiveContainer width="100%" height={288}>
+                  <LineChart data={conversionData} margin={{ top: 5, right: 10, left: -10, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                    <XAxis dataKey="month" tick={{ fontSize: 10 }} />
+                    <YAxis tick={{ fontSize: 10 }} />
+                    <Tooltip contentStyle={{ fontSize: '12px' }} />
+                    <Legend wrapperStyle={{ fontSize: '11px' }} />
+                    <Line type="monotone" dataKey="rate" stroke="#10b981" strokeWidth={2} name="Conversion Rate (%)" />
+                  </LineChart>
+                </ResponsiveContainer>
+              )}
             </div>
           </div>
 
           {/* Profesi Terbanyak */}
           <div className="bg-white p-4 sm:p-6 rounded-xl shadow-lg border border-slate-200">
             <h2 className="text-base sm:text-lg font-bold text-slate-800 mb-3 sm:mb-4">Profesi Terbanyak Berlangganan</h2>
-            <div className="w-full h-64 sm:h-72">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={professionData} layout="vertical" margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                  <XAxis type="number" tick={{ fontSize: 10 }} />
-                  <YAxis dataKey="profession" type="category" width={70} tick={{ fontSize: 9 }} />
-                  <Tooltip contentStyle={{ fontSize: '12px' }} />
-                  <Legend wrapperStyle={{ fontSize: '11px' }} />
-                  <Bar dataKey="count" fill="#8b5cf6" name="Jumlah Nasabah" radius={[0, 8, 8, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
+            <div className="w-full overflow-hidden">
+              {mounted && (
+                <ResponsiveContainer width="100%" height={288}>
+                  <BarChart data={professionData} layout="vertical" margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                    <XAxis type="number" tick={{ fontSize: 10 }} />
+                    <YAxis dataKey="profession" type="category" width={70} tick={{ fontSize: 9 }} />
+                    <Tooltip contentStyle={{ fontSize: '12px' }} />
+                    <Legend wrapperStyle={{ fontSize: '11px' }} />
+                    <Bar dataKey="count" fill="#8b5cf6" name="Jumlah Nasabah" radius={[0, 8, 8, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
+              )}
             </div>
           </div>
 
@@ -166,31 +178,33 @@ const AnalyticsPage: React.FC = () => {
           <div className="bg-white p-4 sm:p-6 rounded-xl shadow-lg border border-slate-200">
             <h2 className="text-base sm:text-lg font-bold text-slate-800 mb-3 sm:mb-4">Alasan Nasabah Menolak / Tidak Berminat</h2>
             <p className="text-xs sm:text-sm text-slate-600 mb-3 sm:mb-4">Kategori alasan saat sales menelepon</p>
-            <div className="w-full h-64 sm:h-72">
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie
-                    data={rejectionReasonsData}
-                    cx="50%"
-                    cy="45%"
-                    labelLine={false}
-                    label={({ value }) => `${value}%`}
-                    outerRadius={window.innerWidth < 640 ? 60 : 80}
-                    fill="#8884d8"
-                    dataKey="value"
-                  >
-                    {rejectionReasonsData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.color} />
-                    ))}
-                  </Pie>
-                  <Tooltip contentStyle={{ fontSize: '12px' }} />
-                  <Legend 
-                    verticalAlign="bottom" 
-                    height={36}
-                    wrapperStyle={{ fontSize: '10px' }}
-                  />
-                </PieChart>
-              </ResponsiveContainer>
+            <div className="w-full overflow-hidden">
+              {mounted && (
+                <ResponsiveContainer width="100%" height={288}>
+                  <PieChart>
+                    <Pie
+                      data={rejectionReasonsData}
+                      cx="50%"
+                      cy="45%"
+                      labelLine={false}
+                      label={({ value }) => `${value}%`}
+                      outerRadius={window.innerWidth < 640 ? 60 : 80}
+                      fill="#8884d8"
+                      dataKey="value"
+                    >
+                      {rejectionReasonsData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.color} />
+                      ))}
+                    </Pie>
+                    <Tooltip contentStyle={{ fontSize: '12px' }} />
+                    <Legend 
+                      verticalAlign="bottom" 
+                      height={36}
+                      wrapperStyle={{ fontSize: '10px' }}
+                    />
+                  </PieChart>
+                </ResponsiveContainer>
+              )}
             </div>
           </div>
         </div>
