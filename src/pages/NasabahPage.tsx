@@ -16,54 +16,54 @@ const DetailModal: React.FC<DetailModalProps> = ({ isOpen, onClose, nasabah }) =
   if (!isOpen || !nasabah) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-3 sm:p-4">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 p-6 flex items-center justify-between rounded-t-xl" style={{ background: '#184b86' }}>
-          <div>
-            <h2 className="text-xl font-bold text-white">Detail Lead</h2>
-            <p className="text-sm text-blue-100 mt-1">{nasabah.nama}</p>
+        <div className="sticky top-0 p-4 sm:p-6 flex items-center justify-between rounded-t-xl" style={{ background: '#184b86' }}>
+          <div className="min-w-0 flex-1">
+            <h2 className="text-lg sm:text-xl font-bold text-white truncate">Detail Lead</h2>
+            <p className="text-xs sm:text-sm text-blue-100 mt-1 truncate">{nasabah.nama}</p>
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+            className="p-2 hover:bg-white/20 rounded-lg transition-colors flex-shrink-0 ml-2"
           >
-            <X className="w-5 h-5 text-white" />
+            <X className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
           </button>
         </div>
 
         {/* Content */}
-        <div className="p-6 space-y-6">
+        <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
           {/* Informasi Umum */}
           <div>
-            <h3 className="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-4">Informasi Umum</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="flex items-start gap-3 p-3 bg-slate-50 rounded-lg">
-                <User className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: '#184b86' }} />
-                <div>
+            <h3 className="text-xs sm:text-sm font-semibold text-slate-500 uppercase tracking-wide mb-3 sm:mb-4">Informasi Umum</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+              <div className="flex items-start gap-2 sm:gap-3 p-2.5 sm:p-3 bg-slate-50 rounded-lg">
+                <User className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" style={{ color: '#184b86' }} />
+                <div className="min-w-0">
                   <p className="text-xs text-slate-500 mb-1">Nama Lengkap</p>
-                  <p className="font-semibold text-slate-900">{nasabah.nama}</p>
+                  <p className="font-semibold text-sm sm:text-base text-slate-900 break-words">{nasabah.nama}</p>
                 </div>
               </div>
-              <div className="flex items-start gap-3 p-3 bg-slate-50 rounded-lg">
-                <Phone className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: '#184b86' }} />
-                <div>
+              <div className="flex items-start gap-2 sm:gap-3 p-2.5 sm:p-3 bg-slate-50 rounded-lg">
+                <Phone className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" style={{ color: '#184b86' }} />
+                <div className="min-w-0">
                   <p className="text-xs text-slate-500 mb-1">Nomor Telepon</p>
-                  <p className="font-semibold text-slate-900">{nasabah.telepon}</p>
+                  <p className="font-semibold text-sm sm:text-base text-slate-900 break-words">{nasabah.telepon}</p>
                 </div>
               </div>
-              <div className="flex items-start gap-3 p-3 bg-slate-50 rounded-lg">
-                <Calendar className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: '#184b86' }} />
-                <div>
+              <div className="flex items-start gap-2 sm:gap-3 p-2.5 sm:p-3 bg-slate-50 rounded-lg">
+                <Calendar className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" style={{ color: '#184b86' }} />
+                <div className="min-w-0">
                   <p className="text-xs text-slate-500 mb-1">Umur</p>
-                  <p className="font-semibold text-slate-900">{nasabah.umur} tahun</p>
+                  <p className="font-semibold text-sm sm:text-base text-slate-900">{nasabah.umur} tahun</p>
                 </div>
               </div>
-              <div className="flex items-start gap-3 p-3 bg-slate-50 rounded-lg">
-                <User className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: '#184b86' }} />
-                <div>
+              <div className="flex items-start gap-2 sm:gap-3 p-2.5 sm:p-3 bg-slate-50 rounded-lg">
+                <User className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" style={{ color: '#184b86' }} />
+                <div className="min-w-0">
                   <p className="text-xs text-slate-500 mb-1">Jenis Kelamin</p>
-                  <p className="font-semibold text-slate-900">{nasabah.jenisKelamin}</p>
+                  <p className="font-semibold text-sm sm:text-base text-slate-900">{nasabah.jenisKelamin}</p>
                 </div>
               </div>
             </div>
@@ -71,20 +71,20 @@ const DetailModal: React.FC<DetailModalProps> = ({ isOpen, onClose, nasabah }) =
 
           {/* Informasi Pekerjaan */}
           <div>
-            <h3 className="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-4">Pekerjaan & Industri</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="flex items-start gap-3 p-3 bg-slate-50 rounded-lg">
-                <Briefcase className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: '#184b86' }} />
-                <div>
+            <h3 className="text-xs sm:text-sm font-semibold text-slate-500 uppercase tracking-wide mb-3 sm:mb-4">Pekerjaan & Industri</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+              <div className="flex items-start gap-2 sm:gap-3 p-2.5 sm:p-3 bg-slate-50 rounded-lg">
+                <Briefcase className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" style={{ color: '#184b86' }} />
+                <div className="min-w-0">
                   <p className="text-xs text-slate-500 mb-1">Pekerjaan</p>
-                  <p className="font-semibold text-slate-900">{nasabah.pekerjaan}</p>
+                  <p className="font-semibold text-sm sm:text-base text-slate-900 break-words">{nasabah.pekerjaan}</p>
                 </div>
               </div>
-              <div className="flex items-start gap-3 p-3 bg-slate-50 rounded-lg">
-                <Briefcase className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: '#184b86' }} />
-                <div>
+              <div className="flex items-start gap-2 sm:gap-3 p-2.5 sm:p-3 bg-slate-50 rounded-lg">
+                <Briefcase className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" style={{ color: '#184b86' }} />
+                <div className="min-w-0">
                   <p className="text-xs text-slate-500 mb-1">Sektor Industri</p>
-                  <p className="font-semibold text-slate-900">{nasabah.sektorIndustri}</p>
+                  <p className="font-semibold text-sm sm:text-base text-slate-900 break-words">{nasabah.sektorIndustri}</p>
                 </div>
               </div>
             </div>
@@ -92,20 +92,20 @@ const DetailModal: React.FC<DetailModalProps> = ({ isOpen, onClose, nasabah }) =
 
           {/* Informasi Penting */}
           <div>
-            <h3 className="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-4">Informasi Penting</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="flex items-start gap-3 p-3 bg-slate-50 rounded-lg">
-                <Heart className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: '#184b86' }} />
-                <div>
+            <h3 className="text-xs sm:text-sm font-semibold text-slate-500 uppercase tracking-wide mb-3 sm:mb-4">Informasi Penting</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+              <div className="flex items-start gap-2 sm:gap-3 p-2.5 sm:p-3 bg-slate-50 rounded-lg">
+                <Heart className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" style={{ color: '#184b86' }} />
+                <div className="min-w-0">
                   <p className="text-xs text-slate-500 mb-1">Status Pernikahan</p>
-                  <p className="font-semibold text-slate-900">{nasabah.statusPernikahan}</p>
+                  <p className="font-semibold text-sm sm:text-base text-slate-900">{nasabah.statusPernikahan}</p>
                 </div>
               </div>
-              <div className="flex items-start gap-3 p-3 bg-slate-50 rounded-lg">
-                <MapPin className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: '#184b86' }} />
-                <div>
+              <div className="flex items-start gap-2 sm:gap-3 p-2.5 sm:p-3 bg-slate-50 rounded-lg">
+                <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" style={{ color: '#184b86' }} />
+                <div className="min-w-0">
                   <p className="text-xs text-slate-500 mb-1">Domisili</p>
-                  <p className="font-semibold text-slate-900">{nasabah.domisili}</p>
+                  <p className="font-semibold text-sm sm:text-base text-slate-900 break-words">{nasabah.domisili}</p>
                 </div>
               </div>
             </div>
@@ -113,10 +113,10 @@ const DetailModal: React.FC<DetailModalProps> = ({ isOpen, onClose, nasabah }) =
         </div>
 
         {/* Footer */}
-        <div className="p-6 bg-slate-50 border-t border-slate-200 rounded-b-xl">
+        <div className="p-4 sm:p-6 bg-slate-50 border-t border-slate-200 rounded-b-xl">
           <button
             onClick={onClose}
-            className="w-full px-6 py-3 bg-slate-800 text-white rounded-lg hover:bg-slate-900 font-medium transition-colors"
+            className="w-full px-6 py-2.5 sm:py-3 bg-slate-800 text-white rounded-lg hover:bg-slate-900 font-medium transition-colors text-sm sm:text-base"
           >
             Tutup
           </button>
@@ -160,24 +160,24 @@ const ActionModal: React.FC<ActionModalProps> = ({ isOpen, onClose, nasabah }) =
   };
 
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-3 sm:p-4">
       <div className="bg-white rounded-xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 p-6 flex items-center justify-between rounded-t-xl" style={{ background: '#184b86' }}>
-          <div>
-            <h2 className="text-xl font-bold text-white">Aksi Lead</h2>
-            <p className="text-sm text-blue-100 mt-1">{nasabah?.nama}</p>
+        <div className="sticky top-0 p-4 sm:p-6 flex items-center justify-between rounded-t-xl" style={{ background: '#184b86' }}>
+          <div className="min-w-0 flex-1">
+            <h2 className="text-lg sm:text-xl font-bold text-white truncate">Aksi Lead</h2>
+            <p className="text-xs sm:text-sm text-blue-100 mt-1 truncate">{nasabah?.nama}</p>
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+            className="p-2 hover:bg-white/20 rounded-lg transition-colors flex-shrink-0 ml-2"
           >
-            <X className="w-5 h-5 text-white" />
+            <X className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
           </button>
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-5">
+        <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-4 sm:space-y-5">
           {/* Ketertarikan */}
           <div>
             <label className="block text-sm font-semibold text-slate-700 mb-2">
@@ -254,10 +254,10 @@ const ActionModal: React.FC<ActionModalProps> = ({ isOpen, onClose, nasabah }) =
           </div>
 
           {/* Buttons */}
-          <div className="flex gap-3 pt-2">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-2">
             <button
               type="submit"
-              className="flex-1 px-6 py-3 text-white rounded-lg font-semibold transition-colors"
+              className="flex-1 px-6 py-2.5 sm:py-3 text-white rounded-lg font-semibold transition-colors text-sm sm:text-base"
               style={{ background: '#184b86' }}
               onMouseEnter={(e) => e.currentTarget.style.background = '#0f3a6b'}
               onMouseLeave={(e) => e.currentTarget.style.background = '#184b86'}
@@ -267,7 +267,7 @@ const ActionModal: React.FC<ActionModalProps> = ({ isOpen, onClose, nasabah }) =
             <button
               type="button"
               onClick={onClose}
-              className="px-6 py-3 bg-slate-200 text-slate-700 rounded-lg hover:bg-slate-300 font-semibold transition-colors"
+              className="px-6 py-2.5 sm:py-3 bg-slate-200 text-slate-700 rounded-lg hover:bg-slate-300 font-semibold transition-colors text-sm sm:text-base"
             >
               Batal
             </button>
@@ -357,37 +357,60 @@ const NasabahPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-      <div className="p-6 max-w-7xl mx-auto">
+      {/* Backdrop for mobile dropdowns */}
+      {(filterOpen || sortOpen) && (
+        <div 
+          className="fixed inset-0 bg-black/20 z-40 sm:hidden"
+          onClick={() => {
+            setFilterOpen(false);
+            setSortOpen(false);
+          }}
+        />
+      )}
+      
+      <div className="responsive-container p-3 sm:p-6 max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-8 pb-4 border-b border-slate-200">
-          <h1 className="text-3xl font-bold mb-2" style={{ color: '#184b86' }}>Daftar Leads</h1>
+        <div className="mb-4 sm:mb-8 pb-3 sm:pb-4 border-b border-slate-200">
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 text-center sm:text-left" style={{ color: '#184b86' }}>Daftar Leads</h1>
           
         </div>
 
         {/* Search & Actions */}
-        <div className="flex flex-col sm:flex-row gap-3 mb-6">
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-4 sm:mb-6">
           <div className="flex-1 relative">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
+            <Search className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4 sm:w-5 sm:h-5" />
             <input
               type="text"
               placeholder="Cari nama, telepon, atau pekerjaan..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white shadow-sm"
+              className="w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-2.5 sm:py-3 text-sm sm:text-base border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white shadow-sm"
             />
           </div>
-          <div className="relative">
+          <div className="flex gap-2">
+            <div className="relative flex-1 sm:flex-none">
             <button 
-              onClick={() => setFilterOpen(!filterOpen)}
-              className="flex items-center gap-2 px-5 py-3 bg-white border border-slate-300 rounded-xl hover:bg-slate-50 shadow-sm transition-colors"
+              onClick={() => {
+                setFilterOpen(!filterOpen);
+                setSortOpen(false);
+              }}
+              className="flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 bg-white border border-slate-300 rounded-xl hover:bg-slate-50 shadow-sm transition-colors w-full sm:w-auto"
             >
               <Filter className="w-4 h-4" />
-              <span className="font-medium">Filter</span>
+              <span className="font-medium text-sm sm:text-base">Filter</span>
             </button>
             
             {filterOpen && (
-              <div className="absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-slate-200 p-4 z-50">
-                <h3 className="font-semibold text-slate-800 mb-3">Filter Leads</h3>
+              <div className="fixed inset-x-0 top-auto bottom-0 sm:absolute sm:inset-auto sm:right-0 sm:top-full sm:mt-2 w-full sm:w-64 bg-white rounded-t-2xl sm:rounded-xl shadow-2xl border border-slate-200 p-4 z-50 max-h-[80vh] overflow-y-auto">
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="font-semibold text-slate-800">Filter Leads</h3>
+                  <button 
+                    onClick={() => setFilterOpen(false)}
+                    className="sm:hidden p-1 hover:bg-slate-100 rounded-lg"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
                 
                 <div className="space-y-3">
                   <div>
@@ -430,19 +453,31 @@ const NasabahPage: React.FC = () => {
                 </div>
               </div>
             )}
-          </div>
+            </div>
           
-          <div className="relative">
+            <div className="relative flex-1 sm:flex-none">
             <button 
-              onClick={() => setSortOpen(!sortOpen)}
-              className="flex items-center gap-2 px-5 py-3 bg-white border border-slate-300 rounded-xl hover:bg-slate-50 shadow-sm transition-colors"
+              onClick={() => {
+                setSortOpen(!sortOpen);
+                setFilterOpen(false);
+              }}
+              className="flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 bg-white border border-slate-300 rounded-xl hover:bg-slate-50 shadow-sm transition-colors w-full sm:w-auto"
             >
               <ArrowUpDown className="w-4 h-4" />
-              <span className="font-medium">Sort</span>
+              <span className="font-medium text-sm sm:text-base">Sort</span>
             </button>
             
             {sortOpen && (
-              <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-slate-200 p-2 z-50">
+              <div className="fixed inset-x-0 top-auto bottom-0 sm:absolute sm:inset-auto sm:right-0 sm:top-full sm:mt-2 w-full sm:w-48 bg-white rounded-t-2xl sm:rounded-xl shadow-2xl border border-slate-200 p-2 z-50">
+                <div className="flex items-center justify-between px-2 py-2 sm:hidden">
+                  <h3 className="font-semibold text-slate-800">Urutkan</h3>
+                  <button 
+                    onClick={() => setSortOpen(false)}
+                    className="p-1 hover:bg-slate-100 rounded-lg"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
                 <button
                   onClick={() => {
                     setSortBy('nama');
@@ -490,19 +525,20 @@ const NasabahPage: React.FC = () => {
                 </button>
               </div>
             )}
+            </div>
           </div>
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-2 mb-6 bg-white p-2 rounded-xl shadow-lg border border-slate-200">
+        <div className="flex gap-1 sm:gap-2 mb-4 sm:mb-6 bg-white p-1.5 sm:p-2 rounded-xl shadow-lg border border-slate-200 overflow-x-auto scrollbar-hide">
           {tabs.map(tab => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex-1 px-4 py-2.5 font-semibold text-sm rounded-lg transition-all ${
+              className={`flex-shrink-0 px-3 sm:px-4 py-2 sm:py-2.5 font-semibold text-xs sm:text-sm rounded-lg transition-all whitespace-nowrap ${
                 activeTab === tab.id
                   ? 'text-white shadow-md'
-                  : 'text-slate-600 hover:bg-slate-100'
+                  : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
               }`}
               style={activeTab === tab.id ? { background: '#184b86' } : {}}
             >
@@ -513,7 +549,8 @@ const NasabahPage: React.FC = () => {
 
         {/* Table */}
         <div className="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
-          <div className="overflow-x-auto">
+          {/* Desktop Table View - Hidden on mobile */}
+          <div className="desktop-table hidden md:block overflow-x-auto">
             <table className="w-full">
               <thead className="bg-slate-50 border-b border-slate-200">
                 <tr>
@@ -592,6 +629,77 @@ const NasabahPage: React.FC = () => {
                 })}
               </tbody>
             </table>
+          </div>
+
+          {/* Mobile Card View */}
+          <div className="mobile-cards block md:hidden divide-y divide-slate-200">
+            {filteredNasabah.map((nasabah) => {
+              const priorityBadge = getPriorityBadge(nasabah.prioritas);
+              const statusBadge = getStatusBadge(nasabah.statusKontak);
+              
+              return (
+                <div key={nasabah.id} className="p-4 hover:bg-slate-50 transition-colors">
+                  <div className="flex items-start gap-3 mb-3">
+                    <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: '#184b86' }}>
+                      <span className="text-base font-semibold text-white">{nasabah.nama.charAt(0)}</span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-semibold text-slate-900 text-base mb-1">{nasabah.nama}</h3>
+                      <p className="text-xs text-slate-500 mb-2">{nasabah.domisili}</p>
+                      <div className="flex flex-wrap gap-2">
+                        <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold border ${priorityBadge.class}`}>
+                          {priorityBadge.label}
+                        </span>
+                        <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold border ${statusBadge.class}`}>
+                          {statusBadge.label}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-2 mb-3 text-sm">
+                    <div className="flex items-center gap-2">
+                      <Phone className="w-4 h-4 text-slate-400" />
+                      <span className="text-slate-700">{nasabah.telepon}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Briefcase className="w-4 h-4 text-slate-400" />
+                      <span className="text-slate-700">{nasabah.pekerjaan}</span>
+                    </div>
+                  </div>
+                  
+                  <div className="flex gap-2">
+                    <button 
+                      onClick={() => {
+                        setSelectedNasabah(nasabah);
+                        setIsDetailModalOpen(true);
+                      }}
+                      className="flex-1 flex items-center justify-center gap-2 px-3 py-2 text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors text-sm font-medium"
+                    >
+                      <Eye className="w-4 h-4" />
+                      Detail
+                    </button>
+                    <button 
+                      onClick={() => {
+                        setSelectedNasabah(nasabah);
+                        setIsActionModalOpen(true);
+                      }}
+                      className="flex-1 flex items-center justify-center gap-2 px-3 py-2 text-emerald-600 bg-emerald-50 hover:bg-emerald-100 rounded-lg transition-colors text-sm font-medium"
+                    >
+                      <FileText className="w-4 h-4" />
+                      Aksi
+                    </button>
+                    <button 
+                      onClick={() => window.open(`tel:${nasabah.telepon}`)}
+                      className="flex items-center justify-center px-3 py-2 hover:bg-blue-50 rounded-lg transition-colors"
+                      style={{ color: '#184b86' }}
+                    >
+                      <Phone className="w-5 h-5" />
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
           {filteredNasabah.length === 0 && (

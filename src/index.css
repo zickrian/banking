@@ -10,3 +10,48 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Hide scrollbar but keep functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Mobile responsive - center and scale down */
+@media (max-width: 768px) {
+  .responsive-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0.75rem;
+  }
+  
+  /* Hide desktop table */
+  .desktop-table {
+    display: none !important;
+  }
+  
+  /* Show mobile cards */
+  .mobile-cards {
+    display: block !important;
+  }
+  
+  /* Ensure proper touch scrolling on mobile */
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Tablet and up */
+@media (min-width: 769px) {
+  .mobile-cards {
+    display: none !important;
+  }
+  
+  .desktop-table {
+    display: block !important;
+  }
+}

@@ -34,35 +34,35 @@ const FormKreditPage: React.FC = () => {
   };
 
   return (
-    <div className="p-6">
+    <div className="p-4 sm:p-6">
       {/* Header */}
-      <div className="mb-6 pb-4 border-b border-slate-200">
+      <div className="mb-4 sm:mb-6 pb-4 border-b border-slate-200">
         <button 
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-gray-600 hover:text-gray-800 mb-4"
+          className="flex items-center gap-2 text-gray-600 hover:text-gray-800 mb-3 sm:mb-4"
         >
           <ArrowLeft className="w-4 h-4" />
-          Kembali
+          <span className="text-sm sm:text-base">Kembali</span>
         </button>
-        <div className="flex items-center gap-3">
-          <div className="bg-green-100 p-3 rounded-lg">
-            <FileText className="w-6 h-6 text-green-600" />
+        <div className="flex items-center gap-2 sm:gap-3">
+          <div className="bg-green-100 p-2 sm:p-3 rounded-lg">
+            <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold" style={{ color: '#184b86' }}>Form Pengajuan Kredit</h1>
-            <p className="text-sm text-gray-600">Isi formulir pengajuan kredit untuk nasabah</p>
+            <h1 className="text-xl sm:text-2xl font-bold" style={{ color: '#184b86' }}>Form Pengajuan Kredit</h1>
+            <p className="text-xs sm:text-sm text-gray-600">Isi formulir pengajuan kredit untuk nasabah</p>
           </div>
         </div>
       </div>
 
       {/* Form */}
       <div className="max-w-3xl">
-        <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow border border-gray-200 p-6">
-          <div className="space-y-6">
+        <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow border border-gray-200 p-4 sm:p-6">
+          <div className="space-y-5 sm:space-y-6">
             {/* Data Nasabah */}
             <div>
-              <h2 className="text-lg font-semibold text-gray-800 mb-4">Data Nasabah</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <h2 className="text-base sm:text-lg font-semibold text-gray-800 mb-3 sm:mb-4">Data Nasabah</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Nama Nasabah <span className="text-red-500">*</span>
@@ -94,8 +94,8 @@ const FormKreditPage: React.FC = () => {
 
             {/* Detail Kredit */}
             <div>
-              <h2 className="text-lg font-semibold text-gray-800 mb-4">Detail Kredit</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <h2 className="text-base sm:text-lg font-semibold text-gray-800 mb-3 sm:mb-4">Detail Kredit</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Jenis Kredit <span className="text-red-500">*</span>
@@ -199,10 +199,10 @@ const FormKreditPage: React.FC = () => {
             </div>
 
             {/* Submit Button */}
-            <div className="flex gap-3 pt-4">
+            <div className="flex flex-col sm:flex-row gap-3 pt-4">
               <button
                 type="submit"
-                className="flex items-center gap-2 px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium"
+                className="flex items-center justify-center gap-2 px-6 py-2.5 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium text-sm sm:text-base"
               >
                 <Save className="w-4 h-4" />
                 Simpan Pengajuan
@@ -210,7 +210,7 @@ const FormKreditPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => navigate(-1)}
-                className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium"
+                className="px-6 py-2.5 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium text-sm sm:text-base"
               >
                 Batal
               </button>
