@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Search, Filter, ArrowUpDown, Phone, FileText, Eye, User, X, Briefcase, MapPin, Heart, Calendar } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 import { mockNasabah, Nasabah } from '../data/mockData';
 
 type TabType = 'all' | 'contacted' | 'not-contacted' | 'follow-up';
@@ -290,7 +289,6 @@ const NasabahPage: React.FC = () => {
   const [filterPrioritas, setFilterPrioritas] = useState<string>('all');
   const [filterPekerjaan, setFilterPekerjaan] = useState<string>('all');
   const [sortOpen, setSortOpen] = useState(false);
-  const navigate = useNavigate();
 
   const tabs = [
     { id: 'all' as TabType, label: 'Semua', count: mockNasabah.length },

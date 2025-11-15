@@ -11,19 +11,6 @@ const AnalyticsPage: React.FC = () => {
     setMounted(true);
   }, []);
 
-  // Hitung nasabah yang sudah deposito bulan ini (contacted)
-  const currentMonth = new Date().getMonth();
-  const currentYear = new Date().getFullYear();
-  
-  const depositedThisMonth = mockNasabah.filter(nasabah => {
-    if (nasabah.statusKontak === 'contacted' && nasabah.riwayatKontak.length > 0) {
-      const lastContact = nasabah.riwayatKontak[nasabah.riwayatKontak.length - 1];
-      const contactDate = new Date(lastContact.tanggal);
-      return contactDate.getMonth() === currentMonth && contactDate.getFullYear() === currentYear;
-    }
-    return false;
-  }).length;
-
   const avgGrowth = 8.5;
   const topSegment = 'Entrepreneur';
   const totalLeads = mockNasabah.length;
