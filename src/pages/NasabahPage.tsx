@@ -530,19 +530,19 @@ const NasabahPage: React.FC = () => {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-1 sm:gap-2 mb-4 sm:mb-6 bg-white p-1.5 sm:p-2 rounded-xl shadow-lg border border-slate-200 overflow-x-auto scrollbar-hide">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 sm:gap-2 mb-4 sm:mb-6 bg-white p-1.5 sm:p-2 rounded-xl shadow-lg border border-slate-200">
           {tabs.map(tab => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex-shrink-0 px-3 sm:px-4 py-2 sm:py-2.5 font-semibold text-xs sm:text-sm rounded-lg transition-all whitespace-nowrap ${
+              className={`px-3 sm:px-4 py-2 sm:py-2.5 font-semibold text-xs sm:text-sm rounded-lg transition-all whitespace-nowrap ${
                 activeTab === tab.id
                   ? 'text-white shadow-md'
                   : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
               }`}
               style={activeTab === tab.id ? { background: '#184b86' } : {}}
             >
-              {tab.label} <span className={`${activeTab === tab.id ? 'text-blue-100' : 'text-slate-400'}`}>({tab.count})</span>
+              <span className="block sm:inline">{tab.label}</span> <span className={`${activeTab === tab.id ? 'text-blue-100' : 'text-slate-400'}`}>({tab.count})</span>
             </button>
           ))}
         </div>
