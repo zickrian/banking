@@ -9,6 +9,7 @@ const AnalyticsPage: React.FC = () => {
   const currentMonth = new Date().getMonth();
   const currentYear = new Date().getFullYear();
   
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const depositedThisMonth = mockNasabah.filter(nasabah => {
     if (nasabah.statusKontak === 'contacted' && nasabah.riwayatKontak.length > 0) {
       const lastContact = nasabah.riwayatKontak[nasabah.riwayatKontak.length - 1];

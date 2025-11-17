@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Search, Filter, ArrowUpDown, Phone, FileText, Eye, User, X, Briefcase, MapPin, Heart, Calendar } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Search, Filter, ArrowUpDown, Phone, FileText, Eye, User, X, Briefcase, MapPin, Heart, Calendar, Download } from 'lucide-react';
 import { mockNasabah, Nasabah } from '../data/mockData';
+import Toast from '../components/Toast';
 
 type TabType = 'all' | 'contacted' | 'not-contacted' | 'follow-up';
 
@@ -116,7 +116,10 @@ const DetailModal: React.FC<DetailModalProps> = ({ isOpen, onClose, nasabah }) =
         <div className="p-4 sm:p-6 bg-slate-50 border-t border-slate-200 rounded-b-xl">
           <button
             onClick={onClose}
-            className="w-full px-6 py-2.5 sm:py-3 bg-slate-800 text-white rounded-lg hover:bg-slate-900 font-medium transition-colors text-sm sm:text-base"
+            className="w-full px-6 py-2.5 sm:py-3 text-white rounded-lg font-medium transition-colors text-sm sm:text-base"
+            style={{ background: '#184b86' }}
+            onMouseEnter={(e) => e.currentTarget.style.background = '#0f3a6b'}
+            onMouseLeave={(e) => e.currentTarget.style.background = '#184b86'}
           >
             Tutup
           </button>
@@ -133,7 +136,7 @@ interface ActionModalProps {
   nasabah: Nasabah | null;
 }
 
-const ActionModal: React.FC<ActionModalProps> = ({ isOpen, onClose, nasabah }) => {
+const ActionModal: React.FC<ActionModalProps & { onSaveSuccess: () => void }> = ({ isOpen, onClose, nasabah, onSaveSuccess }) => {
   const [formData, setFormData] = useState({
     ketertarikan: '',
     statusKontak: 'not-contacted',
@@ -155,7 +158,7 @@ const ActionModal: React.FC<ActionModalProps> = ({ isOpen, onClose, nasabah }) =
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Data berhasil disimpan!');
+    onSaveSuccess();
     onClose();
   };
 
@@ -290,7 +293,7 @@ const NasabahPage: React.FC = () => {
   const [filterPrioritas, setFilterPrioritas] = useState<string>('all');
   const [filterPekerjaan, setFilterPekerjaan] = useState<string>('all');
   const [sortOpen, setSortOpen] = useState(false);
-  const navigate = useNavigate();
+  const [showToast, setShowToast] = useState(false);
 
   const tabs = [
     { id: 'all' as TabType, label: 'Semua', count: mockNasabah.length },
@@ -355,6 +358,82 @@ const NasabahPage: React.FC = () => {
     }
   };
 
+  const downloadPDF = () => {
+    // Filter nasabah yang tertarik melakukan deposito
+    const interestedNasabah = mockNasabah.filter(n => n.ketertarikan === 'tertarik');
+    
+    // Create PDF content as HTML
+    const pdfContent = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Data Leads Tertarik Deposito</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h1 { color: #184b86; text-align: center; margin-bottom: 30px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+    th { background-color: #184b86; color: white; font-weight: bold; }
+    tr:nth-child(even) { background-color: #f9f9f9; }
+    .header { text-align: center; margin-bottom: 10px; color: #666; }
+    .footer { margin-top: 30px; text-align: center; color: #666; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <h1>Data Leads Tertarik Deposito</h1>
+  <p class="header">Total: ${interestedNasabah.length} nasabah</p>
+  <table>
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Nama</th>
+        <th>Telepon</th>
+        <th>Pekerjaan</th>
+        <th>Domisili</th>
+        <th>Status Kontak</th>
+        <th>Prioritas</th>
+        <th>Catatan</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${interestedNasabah.map((nasabah, index) => `
+        <tr>
+          <td>${index + 1}</td>
+          <td>${nasabah.nama}</td>
+          <td>${nasabah.telepon}</td>
+          <td>${nasabah.pekerjaan}</td>
+          <td>${nasabah.domisili}</td>
+          <td>${nasabah.statusKontak}</td>
+          <td>${nasabah.prioritas}</td>
+          <td>${nasabah.catatan || '-'}</td>
+        </tr>
+      `).join('')}
+    </tbody>
+  </table>
+  <p class="footer">Dicetak pada: ${new Date().toLocaleDateString('id-ID', { 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  })}</p>
+</body>
+</html>
+    `;
+
+    // Create a Blob and download
+    const blob = new Blob([pdfContent], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `leads-tertarik-deposito-${new Date().toISOString().split('T')[0]}.html`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
       {/* Backdrop for mobile dropdowns */}
@@ -388,6 +467,17 @@ const NasabahPage: React.FC = () => {
             />
           </div>
           <div className="flex gap-2">
+            <button 
+              onClick={downloadPDF}
+              className="flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 text-white rounded-xl shadow-sm transition-colors"
+              style={{ background: '#184b86' }}
+              onMouseEnter={(e) => e.currentTarget.style.background = '#0f3a6b'}
+              onMouseLeave={(e) => e.currentTarget.style.background = '#184b86'}
+              title="Download PDF Leads Tertarik"
+            >
+              <Download className="w-4 h-4" />
+              <span className="font-medium text-sm sm:text-base hidden sm:inline">PDF</span>
+            </button>
             <div className="relative flex-1 sm:flex-none">
             <button 
               onClick={() => {
@@ -728,6 +818,15 @@ const NasabahPage: React.FC = () => {
             setSelectedNasabah(null);
           }}
           nasabah={selectedNasabah}
+          onSaveSuccess={() => setShowToast(true)}
+        />
+
+        {/* Toast Notification */}
+        <Toast 
+          message="Data berhasil disimpan!"
+          isVisible={showToast}
+          onClose={() => setShowToast(false)}
+          duration={1000}
         />
       </div>
     </div>
