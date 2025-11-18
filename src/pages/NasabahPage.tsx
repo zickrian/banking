@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Search, Filter, ArrowUpDown, Phone, FileText, Eye, User, X, Briefcase, MapPin, Heart, Calendar, Download } from 'lucide-react';
 import { mockNasabah, Nasabah } from '../data/mockData';
 import Toast from '../components/Toast';
+import { jsPDF } from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 type TabType = 'all' | 'contacted' | 'not-contacted' | 'follow-up';
 
@@ -362,76 +364,65 @@ const NasabahPage: React.FC = () => {
     // Filter nasabah yang tertarik melakukan deposito
     const interestedNasabah = mockNasabah.filter(n => n.ketertarikan === 'tertarik');
     
-    // Create PDF content as HTML
-    const pdfContent = `
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Data Leads Tertarik Deposito</title>
-  <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    h1 { color: #184b86; text-align: center; margin-bottom: 30px; }
-    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-    th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
-    th { background-color: #184b86; color: white; font-weight: bold; }
-    tr:nth-child(even) { background-color: #f9f9f9; }
-    .header { text-align: center; margin-bottom: 10px; color: #666; }
-    .footer { margin-top: 30px; text-align: center; color: #666; font-size: 12px; }
-  </style>
-</head>
-<body>
-  <h1>Data Leads Tertarik Deposito</h1>
-  <p class="header">Total: ${interestedNasabah.length} nasabah</p>
-  <table>
-    <thead>
-      <tr>
-        <th>No</th>
-        <th>Nama</th>
-        <th>Telepon</th>
-        <th>Pekerjaan</th>
-        <th>Domisili</th>
-        <th>Status Kontak</th>
-        <th>Prioritas</th>
-        <th>Catatan</th>
-      </tr>
-    </thead>
-    <tbody>
-      ${interestedNasabah.map((nasabah, index) => `
-        <tr>
-          <td>${index + 1}</td>
-          <td>${nasabah.nama}</td>
-          <td>${nasabah.telepon}</td>
-          <td>${nasabah.pekerjaan}</td>
-          <td>${nasabah.domisili}</td>
-          <td>${nasabah.statusKontak}</td>
-          <td>${nasabah.prioritas}</td>
-          <td>${nasabah.catatan || '-'}</td>
-        </tr>
-      `).join('')}
-    </tbody>
-  </table>
-  <p class="footer">Dicetak pada: ${new Date().toLocaleDateString('id-ID', { 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit'
-  })}</p>
-</body>
-</html>
-    `;
-
-    // Create a Blob and download
-    const blob = new Blob([pdfContent], { type: 'text/html' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `leads-tertarik-deposito-${new Date().toISOString().split('T')[0]}.html`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+    // Create PDF document
+    const doc = new jsPDF();
+    
+    // Add title
+    doc.setFontSize(18);
+    doc.setTextColor(24, 75, 134); // #184b86
+    doc.text('Data Leads Tertarik Deposito', doc.internal.pageSize.getWidth() / 2, 20, { align: 'center' });
+    
+    // Add subtitle with total count
+    doc.setFontSize(10);
+    doc.setTextColor(102, 102, 102); // #666
+    doc.text(`Total: ${interestedNasabah.length} nasabah`, doc.internal.pageSize.getWidth() / 2, 28, { align: 'center' });
+    
+    // Prepare table data
+    const tableData = interestedNasabah.map((nasabah, index) => [
+      index + 1,
+      nasabah.nama,
+      nasabah.telepon,
+      nasabah.pekerjaan,
+      nasabah.domisili,
+      nasabah.statusKontak,
+      nasabah.prioritas,
+      nasabah.catatan || '-'
+    ]);
+    
+    // Add table
+    autoTable(doc, {
+      head: [['No', 'Nama', 'Telepon', 'Pekerjaan', 'Domisili', 'Status Kontak', 'Prioritas', 'Catatan']],
+      body: tableData,
+      startY: 35,
+      styles: {
+        fontSize: 8,
+        cellPadding: 3
+      },
+      headStyles: {
+        fillColor: [24, 75, 134], // #184b86
+        textColor: [255, 255, 255],
+        fontStyle: 'bold'
+      },
+      alternateRowStyles: {
+        fillColor: [249, 249, 249]
+      }
+    });
+    
+    // Add footer with date
+    const finalY = (doc as any).lastAutoTable.finalY || 40;
+    doc.setFontSize(8);
+    doc.setTextColor(102, 102, 102);
+    const dateText = `Dicetak pada: ${new Date().toLocaleDateString('id-ID', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    })}`;
+    doc.text(dateText, doc.internal.pageSize.getWidth() / 2, finalY + 10, { align: 'center' });
+    
+    // Save the PDF
+    doc.save(`leads-tertarik-deposito-${new Date().toISOString().split('T')[0]}.pdf`);
   };
 
   return (
